@@ -26,7 +26,7 @@ const LoginCheck = () => {
     <>
       <div>
         <h1>Login Page</h1>
-        {(login === null || !login) && (
+         
           <>
             <form>
             {login !== null && (
@@ -55,7 +55,7 @@ const LoginCheck = () => {
               <button type="submit" onClick={handleClick}>Submit</button>
             </form>
           </>
-        )}
+        
        
       </div>
     </>
