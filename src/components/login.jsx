@@ -26,37 +26,32 @@ const LoginCheck = () => {
     <>
       <div>
         <h1>Login Page</h1>
-         
-          <>
-            <form>
-            {login !== null && (
-          login ? <p>Welcome, User!</p> : <p>Invalid username or password</p>
+        <form>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            required
+            placeholder="username"
+            onChange={handleUsernameChange}
+          />
+          <br />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            required
+            placeholder="password"
+            onChange={handlePasswordChange}
+          />
+          <br />
+          <button type="submit" onClick={handleClick}>Submit</button>
+        </form>
+        {login !== null && (
+          login ? <h3>Welcome, User!</h3> : <h3>Invalid username or password</h3>
         )}
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                value={username}
-                required
-                placeholder="username"
-                onChange={handleUsernameChange}
-              />
-              <br />
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                required
-                placeholder="password"
-                onChange={handlePasswordChange}
-              />
-              <br />
-              <button type="submit" onClick={handleClick}>Submit</button>
-            </form>
-          </>
-        
-       
       </div>
     </>
   );
