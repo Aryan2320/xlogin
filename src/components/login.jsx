@@ -1,60 +1,53 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-const LoginCheck = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [login, setLogin] = useState(null);
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+function LoginCheck() {
+    const [username,setUsername]=useState("");
+    const[password,setPassword]=useState("");
+    const[error,setError]=useState("");
+    const[submitted,isSubmitted]=useState(false);
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (username === 'username' && password === 'password') {
-      setLogin(true);
-    } else {
-      setLogin(false);
-    }
-  };
+const handleSubmit=(e)=>{
+  e.preventDefault();
+
+  if(username==="user" && password==="password"){
+    setError("");
+    isSubmitted(true);
+  }else{
+    setError("Invalid username or password");
+    isSubmitted(false);
+  }
+
+}
+
 
   return (
-    <>
-      <div>
-        <h1>Login Page</h1>
-        <form>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            required
-            placeholder="username"
-            onChange={handleUsernameChange}
-          />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            required
-            placeholder="password"
-            onChange={handlePasswordChange}
-          />
-          <br />
-          <button type="submit" onClick={handleClick}>Submit</button>
-        </form>
-        {login !== null && (
-          login ? <h3>Welcome, User!</h3> : <h3>Invalid username or password</h3>
-        )}
+    <div className='loginPage'>
+      <h1>Login Page</h1>
+      {submitted ? (
+        <div className='valid'>
+          <p>Welcome, {username}!</p>
+        </div>
+      ):(
+      <form onSubmit={handleSubmit}>
+        {error && <p className='error'>{error}</p>}
+        <div className='username'>
+      <label htmlFor='username'>Username:</label>
+      <input type='text' id='username' value={username} placeholder='username' onChange={(e)=>setUsername(e.target.value)} required/>
       </div>
-    </>
-  );
-};
+      <div className='password'>
+      <label htmlFor='password'>Password:</label>
+      <input type='password' id='password'value={password} placeholder='password' onChange={(e)=>setPassword(e.target.value)} required/>
+      </div>
+      <div>
+      <button type='submit'>submit</button>
+      </div>
+      </form>
+      )}
+    </div>
+      
+  )
+}
 
-export default LoginCheck;
+export default LoginCheck
